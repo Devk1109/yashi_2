@@ -33,6 +33,7 @@
   border-radius: 30px;
   box-shadow: 0 4px 12px rgba(255, 45, 117, 0.15);
   margin-bottom: 6px;
+  transition: all 0.3s ease;
 }
 
 .message h2 {
@@ -42,6 +43,7 @@
   margin: 0;
   color: #ff2d75;
   text-shadow: 0 2px 8px rgba(255, 45, 117, 0.2);
+  transition: all 0.3s ease;
 }
 
 /* Curtain Container */
@@ -212,7 +214,7 @@
   background: #fffdfa;
   background-image: radial-gradient(#f0e6dd 1px, transparent 1px);
   background-size: 16px 16px;
-  padding: 26px 30px;
+  padding: 24px 28px 20px;
   border-radius: 22px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.05);
   border: 2px solid rgba(255, 230, 240, 0.8);
@@ -225,6 +227,15 @@
   position: relative;
   overflow: hidden;
   text-align: left;
+}
+
+.letter-inner-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
 }
 
 /* Washi tape accents */
@@ -264,6 +275,7 @@
   background: #fff0f6;
   transform: rotate(3deg);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  z-index: 4;
 }
 
 .stamp-icon {
@@ -279,10 +291,11 @@
 
 .letter-greeting {
   font-family: "Fredoka", "Outfit", sans-serif;
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #2b1b24;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  padding-right: 70px;
 }
 
 .highlight-name {
@@ -292,17 +305,33 @@
 
 .typed-text-body {
   font-family: "Outfit", sans-serif;
-  font-size: 0.96rem;
-  line-height: 1.6;
+  font-size: 0.94rem;
+  line-height: 1.58;
   color: #3b2834;
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding-right: 6px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 107, 157, 0.4) transparent;
+}
+
+.typed-text-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.typed-text-body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 107, 157, 0.4);
+  border-radius: 4px;
 }
 
 .typed-text-body p {
-  margin: 0 0 10px 0;
+  margin: 0 0 8px 0;
+}
+
+.typed-text-body p:last-child {
+  margin-bottom: 0;
 }
 
 .typed-text-body strong {
@@ -313,39 +342,38 @@
   font-weight: 600;
   color: #ff2d75;
   background: #fff0f6;
-  padding: 8px 12px;
-  border-radius: 12px;
+  padding: 6px 10px;
+  border-radius: 10px;
   display: inline-block;
   border-left: 3px solid #ff2d75;
+  margin-top: 4px;
 }
 
-/* Letter Footer & Send Love Button */
+/* Letter Footer & Controls */
 .letter-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
-  padding-top: 10px;
+  padding-top: 8px;
   border-top: 1px dashed rgba(255, 107, 157, 0.3);
+  gap: 10px;
 }
 
-.send-love-btn {
-  background: linear-gradient(135deg, #ff007f, #ff4081);
-  color: white;
-  border: none;
+.letter-author-box {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+.author-label {
   font-family: "Outfit", sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  padding: 8px 18px;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3);
-  transition: all 0.25s ease;
-}
-
-.send-love-btn:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 6px 18px rgba(255, 0, 127, 0.45);
+  color: #9c6c7f;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .bestie-sign {
@@ -353,6 +381,80 @@
   font-size: 1.45rem;
   font-weight: 700;
   color: #ff007f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Navigation Controls */
+.message-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.msg-counter {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #ff2d75;
+  background: #fff0f6;
+  padding: 4px 9px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 45, 117, 0.2);
+  white-space: nowrap;
+}
+
+.msg-nav-btn {
+  border: none;
+  font-family: "Outfit", sans-serif;
+  font-weight: 700;
+  border-radius: 25px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: none;
+  user-select: none;
+}
+
+.prev-msg-btn {
+  background: rgba(255, 240, 246, 0.95);
+  color: #ff2d75;
+  border: 1.5px solid rgba(255, 45, 117, 0.3);
+  font-size: 0.8rem;
+  padding: 6px 12px;
+}
+
+.prev-msg-btn:hover:not(:disabled) {
+  background: #ffe3ee;
+  transform: translateY(-1.5px) scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 45, 117, 0.2);
+}
+
+.next-msg-btn {
+  background: linear-gradient(135deg, #ff007f, #ff4081);
+  color: white;
+  font-size: 0.82rem;
+  padding: 6px 16px;
+  box-shadow: 0 4px 12px rgba(255, 0, 127, 0.28);
+}
+
+.next-msg-btn:hover:not(:disabled) {
+  transform: translateY(-1.5px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(255, 0, 127, 0.4);
+}
+
+.msg-nav-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.96);
+}
+
+.msg-nav-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Responsive */
@@ -372,26 +474,42 @@
   }
 
   .letter-stationery {
-    padding: 18px 16px;
+    padding: 18px 16px 14px;
   }
 
   .letter-greeting {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    padding-right: 55px;
   }
 
   .typed-text-body {
-    font-size: 0.88rem;
-    line-height: 1.5;
+    font-size: 0.86rem;
+    line-height: 1.48;
   }
 
   .bestie-sign {
     font-size: 1.25rem;
   }
 
-  .send-love-btn {
-    font-size: 0.82rem;
-    padding: 6px 14px;
+  .author-label {
+    font-size: 0.7rem;
+  }
+
+  .msg-nav-btn {
+    font-size: 0.76rem;
+  }
+
+  .next-msg-btn {
+    padding: 5px 12px;
+  }
+
+  .prev-msg-btn {
+    padding: 5px 9px;
+  }
+
+  .msg-counter {
+    font-size: 0.68rem;
+    padding: 3px 7px;
   }
 }
-

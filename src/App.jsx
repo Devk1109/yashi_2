@@ -175,9 +175,9 @@ function App() {
               <span className="heart-separator">💛</span>
               <span className="avatar-icon">🦘</span>
             </div>
-            <h2 className="final-message">Yours Forever, Bestie — Pikachu ⚡</h2>
+            <h2 className="final-message"></h2>
             <p className="final-subtitle">
-              Happiest Birthday to the sweetest, coolest Kangaroo in the world! 🌸✨
+              Happiest Birthday to the sweetest, coolest girl in the world! 🌸✨
             </p>
             <div className="final-stickers">
               <span>🎂</span>

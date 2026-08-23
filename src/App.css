@@ -206,7 +206,7 @@
 
 /* Celebrate Button */
 .celebrate-btn {
-  background: linear-gradient(135deg, #ff007f 0%, #ff4081 50%, #ff758c 100%);
+  background: linear-gradient(135deg, #ff758c 0%, #ff4081 50%, #ff758c 100%);
   color: white;
   border: none;
   padding: 16px 42px;

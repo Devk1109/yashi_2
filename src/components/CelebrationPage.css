@@ -158,7 +158,7 @@
 }
 
 .yes-button {
-  background: linear-gradient(135deg, #ff007f 0%, #ff4081 100%);
+  background: linear-gradient(135deg, #ff4081 0%, #ff3cdf 100%);
   color: white;
   box-shadow: 0 10px 24px rgba(255, 0, 127, 0.35);
 }

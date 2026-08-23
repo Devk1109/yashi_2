@@ -1,0 +1,85 @@
+[
+  {
+    "id": 1,
+    "author": "Vanshika Vashist Smcw",
+    "tag": "💌 BIRTHDAY MESSAGE 💌",
+    "title": "A Special Birthday Wish ✨",
+    "greeting": "Dear Yashi 💖",
+    "paragraphs": [
+      "Wishing you a very very happy birthday ❤️",
+      "May the coming year bring loads of joy and success to you.",
+      "Keep smiling 🫶"
+    ],
+    "closing": "Happy Birthday once again! 🥳✨",
+    "stamp": {
+      "icon": "💌",
+      "text": "BIRTHDAY AIRMAIL"
+    }
+  },
+  {
+    "id": 2,
+    "author": "Vaish Smcw",
+    "tag": "💌 CONFIDENTIAL BIRTHDAY NOTE 💌",
+    "title": "Happiest Birthday Yashiii ✨",
+    "greeting": "Happiest birthday Yashiii 💖",
+    "paragraphs": [
+      "Happy happy birthday my unofficial Pati 🫶",
+      "Wishing you more and more coffees with extra sugar and a lot of gym and excess of happiness !!!",
+      "Love you a lot keep smiling always",
+      "And please mujhe thoda extra pyaar dikhaya karo 🥺"
+    ],
+    "closing": "Happy Birthday Yashiii! 🥳❤️",
+    "stamp": {
+      "icon": "💌",
+      "text": "BESTIE AIRMAIL"
+    }
+  },
+  {
+    "id": 3,
+    "author": "Varsha Goyal",
+    "tag": "💌 BIRTHDAY WISH 💌",
+    "title": "A Special Wish For You ✨",
+    "greeting": "Happyyy Happyyy birthday Yashi !!! 💖",
+    "paragraphs": [
+      "I wish you to be more stronger this year and may all your dreams come true....",
+      "Please, keep laughing at my jokes 🥺😘"
+    ],
+    "closing": "Happy Birthday Yashi! 🥳✨",
+    "stamp": {
+      "icon": "👑",
+      "text": "BESTIE AIRMAIL"
+    }
+  },
+  {
+    "id": 4,
+    "author": "Utpreksha 💛",
+    "tag": "💌 BIRTHDAY WISH 💌",
+    "title": "Another Year More Awesome 🚀",
+    "greeting": "Dearest Yashi 🧸",
+    "paragraphs": [
+      "Every memory, every crazy laugh, and all the random chats make our bond so special! 🦘⚡",
+      "Never forget how truly valued and appreciated you are. Cheers to many more fun adventures together! 🥂"
+    ],
+    "closing": "Sending you truckloads of happiness and love! 💖✨",
+    "stamp": {
+      "icon": "💌",
+      "text": "SEALED WITH LOVE"
+    }
+  },
+  {
+    "id": 5,
+    "author": "Akshat 💛",
+    "tag": "🎈 SWEET REMINDER 🎈",
+    "title": "Another Year More Awesome 🚀",
+    "greeting": "Dearest Yashi 🧸",
+    "paragraphs": [
+      "Every memory, every crazy laugh, and all the random chats make our bond so special! 🦘⚡",
+      "Never forget how truly valued and appreciated you are. Cheers to many more fun adventures together! 🥂"
+    ],
+    "closing": "Sending you truckloads of happiness and love! 💖✨",
+    "stamp": {
+      "icon": "👑",
+      "text": "SEALED WITH LOVE"
+    }
+  }
+]

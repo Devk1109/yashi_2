@@ -1,18 +1,21 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
+import messages from "../data/messages.json";
 import Confetti from "./Confetti";
 import "./MessageCard.css";
 
 function MessageCard({ isActive }) {
   const [curtainsOpened, setCurtainsOpened] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
-  const [loveCount, setLoveCount] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const prevIsActive = useRef(isActive);
 
   const curtainLeftRef = useRef(null);
   const curtainRightRef = useRef(null);
   const curtainHintRef = useRef(null);
   const messageContentRef = useRef(null);
+  const letterBodyRef = useRef(null);
 
   // Handle page transitions
   useEffect(() => {
@@ -26,6 +29,7 @@ function MessageCard({ isActive }) {
     if (!isActive && prevIsActive.current) {
       setTimeout(() => {
         setCurtainsOpened(false);
+        setCurrentIndex(0);
 
         if (curtainLeftRef.current && curtainRightRef.current) {
           const resetTimeline = gsap.timeline();
@@ -126,27 +130,81 @@ function MessageCard({ isActive }) {
     }
   };
 
-  const handleSendLove = (e) => {
-    e.stopPropagation();
-    setLoveCount((prev) => prev + 1);
-    setShowConfetti(true);
-    setTimeout(() => setShowConfetti(false), 3000);
+  const handleNextMessage = (e) => {
+    if (e) e.stopPropagation();
+    if (isTransitioning || messages.length <= 1) return;
 
-    const btn = document.querySelector(".send-love-btn");
-    if (btn) {
-      gsap.fromTo(
-        btn,
-        { scale: 0.85 },
-        { scale: 1.1, yoyo: true, repeat: 1, duration: 0.2, ease: "power2.out" }
-      );
+    setIsTransitioning(true);
+    if (letterBodyRef.current) {
+      gsap.to(letterBodyRef.current, {
+        opacity: 0,
+        x: -20,
+        scale: 0.97,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          setCurrentIndex((prev) => (prev + 1) % messages.length);
+          gsap.fromTo(
+            letterBodyRef.current,
+            { opacity: 0, x: 20, scale: 0.97 },
+            {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              duration: 0.28,
+              ease: "power2.out",
+              onComplete: () => setIsTransitioning(false),
+            }
+          );
+        },
+      });
+    } else {
+      setCurrentIndex((prev) => (prev + 1) % messages.length);
+      setIsTransitioning(false);
     }
   };
+
+  const handlePrevMessage = (e) => {
+    if (e) e.stopPropagation();
+    if (isTransitioning || messages.length <= 1) return;
+
+    setIsTransitioning(true);
+    if (letterBodyRef.current) {
+      gsap.to(letterBodyRef.current, {
+        opacity: 0,
+        x: 20,
+        scale: 0.97,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          setCurrentIndex((prev) => (prev - 1 + messages.length) % messages.length);
+          gsap.fromTo(
+            letterBodyRef.current,
+            { opacity: 0, x: -20, scale: 0.97 },
+            {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              duration: 0.28,
+              ease: "power2.out",
+              onComplete: () => setIsTransitioning(false),
+            }
+          );
+        },
+      });
+    } else {
+      setCurrentIndex((prev) => (prev - 1 + messages.length) % messages.length);
+      setIsTransitioning(false);
+    }
+  };
+
+  const currentMsg = messages[currentIndex] || messages[0] || {};
 
   return (
     <section className="message">
       <div className="message-header">
-        <span className="message-tag">💌 CONFIDENTIAL BIRTHDAY NOTE 💌</span>
-        <h2>A Special Message For You ✨</h2>
+        <span className="message-tag">{currentMsg.tag || "💌 CONFIDENTIAL BIRTHDAY NOTE 💌"}</span>
+        <h2>{currentMsg.title || "A Special Message For You ✨"}</h2>
       </div>
 
       <div className="curtain-container">
@@ -194,37 +252,64 @@ function MessageCard({ isActive }) {
             <div className="washi-tape washi-right"></div>
 
             <div className="stamp-badge">
-              <span className="stamp-icon">👑</span>
-              <span className="stamp-text">BESTIE AIRMAIL</span>
+              <span className="stamp-icon">{currentMsg.stamp?.icon || "👑"}</span>
+              <span className="stamp-text">{currentMsg.stamp?.text || "BESTIE AIRMAIL"}</span>
             </div>
 
-            <div className="letter-greeting">
-              Dear <span className="highlight-name">Yashi</span> 💖
-            </div>
+            <div ref={letterBodyRef} className="letter-inner-content">
+              <div className="letter-greeting">
+                {currentMsg.greeting || "Dear Yashi 💖"}
+              </div>
 
-            <div className="typed-text-body">
-              <p>
-                <strong>Happy Birthday, Yashi! 🎉🎂</strong>
-              </p>
-              <p>
-                Party toh dekho banti h, vo change nhi hoga ok na! 😉 And ha cake bhi katega chotu sa kyuki tum kehti toh ho ki u don't like celebration, but ha you like to celebrate deep down — itna toh tumhe janta hi hu! 🤭✨
-              </p>
-              <p>
-                And ek din toh dekho <strong>ice cream tub khana h</strong> 🍨, vo bhi change nhi hoga pakka!
-              </p>
-              <p>
-                Thank you fir se trust ke liye 💛.
-              </p>
-              <p className="letter-closing">
-                Happpppppy Birthday! Enjoy karo aaj pure din aur fir story sunno! 🥳✨
-              </p>
-            </div>
+              <div className="typed-text-body">
+                {Array.isArray(currentMsg.paragraphs) ? (
+                  currentMsg.paragraphs.map((paragraph, idx) => (
+                    <p key={idx}>{paragraph}</p>
+                  ))
+                ) : (
+                  <p>{currentMsg.paragraphs || currentMsg.message || ""}</p>
+                )}
+                {currentMsg.closing && (
+                  <p className="letter-closing">{currentMsg.closing}</p>
+                )}
+              </div>
 
-            <div className="letter-footer">
-              <button className="send-love-btn" onClick={handleSendLove}>
-                💖 Send Love ({loveCount > 0 ? `${loveCount} ❤️` : "Tap to Heart"})
-              </button>
-              <span className="bestie-sign">~ Pikachu ⚡</span>
+              <div className="letter-footer">
+                <div className="letter-author-box">
+                  <span className="author-label">From:</span>
+                  <span className="bestie-sign">{currentMsg.author || "Bestie"}</span>
+                </div>
+
+                <div className="message-nav-controls">
+                  {messages.length > 1 && (
+                    <button
+                      className="msg-nav-btn prev-msg-btn"
+                      onClick={handlePrevMessage}
+                      title="Previous message"
+                      aria-label="Previous message"
+                      disabled={isTransitioning}
+                    >
+                      ❮
+                    </button>
+                  )}
+
+                  {messages.length > 1 && (
+                    <span className="msg-counter">
+                      {currentIndex + 1} / {messages.length}
+                    </span>
+                  )}
+
+                  <button
+                    className="msg-nav-btn next-msg-btn"
+                    onClick={handleNextMessage}
+                    title="Next message"
+                    aria-label="Next message"
+                    disabled={isTransitioning}
+                  >
+                    Next ❯
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -236,4 +321,3 @@ function MessageCard({ isActive }) {
 }
 
 export default MessageCard;
-
