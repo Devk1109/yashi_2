@@ -1,0 +1,328 @@
+/* Gallery Section */
+.gallery {
+  padding: 0 10px 40px;
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background: transparent;
+  position: relative;
+}
+
+/* Gallery Header */
+.gallery-header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  padding: 16px 20px 14px;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 8px 24px rgba(255, 45, 117, 0.12);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.gallery-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff2d75, #ff6b9d);
+  color: white;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 4px 14px;
+  border-radius: 30px;
+  margin-bottom: 6px;
+  box-shadow: 0 3px 8px rgba(255, 45, 117, 0.2);
+}
+
+.gallery h2 {
+  font-family: "Fredoka", "Outfit", sans-serif;
+  font-size: 1.85rem;
+  margin: 0 0 4px 0;
+  color: #ff2d75;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 8px rgba(255, 45, 117, 0.15);
+}
+
+.gallery-subtitle {
+  font-size: 0.92rem;
+  color: #795267;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Photos Grid - Polaroid Styling */
+.photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+  max-width: 1000px;
+  width: 100%;
+  padding: 10px 12px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.polaroid-card {
+  background: #ffffff;
+  padding: 8px 8px 18px 8px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: visible;
+  border: 1px solid rgba(255, 230, 240, 0.6);
+}
+
+.polaroid-card:hover {
+  transform: translateY(-6px) scale(1.06) rotate(0deg) !important;
+  box-shadow: 0 16px 32px rgba(255, 45, 117, 0.25);
+  z-index: 10;
+}
+
+/* Jaunty random rotation for cheerful album feel */
+.polaroid-card:nth-child(4n + 1) {
+  transform: rotate(-1.5deg);
+}
+
+.polaroid-card:nth-child(4n + 2) {
+  transform: rotate(1.5deg);
+}
+
+.polaroid-card:nth-child(4n + 3) {
+  transform: rotate(-1deg);
+}
+
+.polaroid-card:nth-child(4n + 4) {
+  transform: rotate(2deg);
+}
+
+.polaroid-pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.polaroid-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  background: #f8eef2;
+}
+
+/* Lightbox Modal */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 5, 26, 0.92);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: lightboxFadeIn 250ms ease;
+  padding: 40px 20px;
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox-content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 85vh;
+  position: relative;
+}
+
+.lightbox img {
+  max-width: 85vw;
+  max-height: 68vh;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-caption-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #2b1b24;
+  padding: 10px 18px;
+  border-radius: 50px;
+  margin-top: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+}
+
+.lightbox-caption-text {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #3b2834;
+}
+
+.like-snap-btn {
+  background: #fff0f6;
+  border: 1.5px solid #ff4081;
+  color: #ff2d75;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.like-snap-btn.liked {
+  background: #ff2d75;
+  color: white;
+  border-color: #ff2d75;
+}
+
+.lightbox-counter {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Outfit", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 200ms ease;
+  z-index: 10000;
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-close:hover {
+  background: #ff2d75;
+  transform: scale(1.1);
+}
+
+.nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  font-size: 2.5rem;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 200ms ease;
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  z-index: 10000;
+}
+
+.nav-btn:hover {
+  background: #ff2d75;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-prev {
+  left: 20px;
+}
+
+.nav-next {
+  right: 20px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .gallery h2 {
+    font-size: 1.55rem;
+  }
+
+  .gallery-header-sticky {
+    padding: 12px 14px 10px;
+  }
+
+  .photos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 6px;
+  }
+
+  .polaroid-card {
+    padding: 5px 5px 12px 5px;
+    border-radius: 8px;
+  }
+
+  .polaroid-pin {
+    font-size: 0.9rem;
+    top: -6px;
+  }
+
+  .nav-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+  }
+
+  .nav-prev {
+    left: 8px;
+  }
+
+  .nav-next {
+    right: 8px;
+  }
+
+  .lightbox-close {
+    width: 40px;
+    height: 40px;
+    top: 14px;
+    right: 14px;
+    font-size: 1.3rem;
+  }
+
+  .lightbox-caption-bar {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}
+

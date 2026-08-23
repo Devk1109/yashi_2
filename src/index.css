@@ -1,0 +1,72 @@
+:root {
+  --primary-pink: #ff2d75;
+  --secondary-pink: #ff6b9d;
+  --accent-purple: #9c27b0;
+  --accent-gold: #ffb703;
+  --accent-coral: #fb8500;
+  --accent-mint: #2ec4b6;
+  --bg-gradient: linear-gradient(135deg, #ffeef8 0%, #fff0f5 25%, #ffdfeb 50%, #f7d6ff 75%, #ffe6f0 100%);
+  --card-glass: rgba(255, 255, 255, 0.88);
+  --card-border: rgba(255, 255, 255, 0.9);
+  --card-shadow: 0 20px 45px rgba(255, 75, 130, 0.15), 0 8px 16px rgba(0, 0, 0, 0.04);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  background: var(--bg-gradient);
+  background-size: 300% 300%;
+  animation: auroraFlow 16s ease-in-out infinite alternate;
+  text-align: center;
+  color: #2b2b36;
+  scroll-behavior: smooth;
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+  position: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+@keyframes auroraFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 50% 100%;
+  }
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+

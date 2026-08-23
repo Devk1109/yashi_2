@@ -1,0 +1,273 @@
+/* Countdown Section */
+.countdown {
+  padding: 10px 15px;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.flip-timer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  perspective: 1200px;
+}
+
+.digit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Flip Card Container */
+.card {
+  width: 78px;
+  height: 90px;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 14px 30px rgba(255, 45, 117, 0.22),
+    0 4px 10px rgba(0, 0, 0, 0.05),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 107, 157, 0.35);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 18px 36px rgba(255, 45, 117, 0.3),
+    0 0 15px rgba(255, 182, 193, 0.6);
+}
+
+.card-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.1) 100%);
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 16px 16px 0 0;
+}
+
+/* Card Inner Content */
+.card .text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fredoka", "Outfit", sans-serif;
+  font-size: 2.9rem;
+  font-weight: 700;
+  color: #ff2d75;
+  background: linear-gradient(180deg, #ffffff 0%, #fff4f8 60%, #ffe1ec 100%);
+  position: relative;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -1px;
+}
+
+/* Top Half Line Divider */
+.card .text::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 45, 117, 0.25) 20%,
+    rgba(255, 45, 117, 0.25) 80%,
+    transparent
+  );
+  z-index: 3;
+}
+
+/* Flip Animation */
+.card.flip .text {
+  animation: flipCard 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes flipCard {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(-90deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+/* Label Pill */
+.label {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: #634050;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label-icon {
+  font-size: 0.85rem;
+}
+
+/* Birthday Celebration Message Banner */
+.celebration-banner-wrapper {
+  background: rgba(255, 255, 255, 0.92);
+  padding: 24px 28px;
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(255, 45, 117, 0.25);
+  border: 2px solid rgba(255, 107, 157, 0.4);
+  backdrop-filter: blur(16px);
+  animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.celebration-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff2d75, #ff6b9d);
+  color: white;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  padding: 6px 16px;
+  border-radius: 30px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(255, 45, 117, 0.3);
+}
+
+.birthday-celebration {
+  font-family: "Fredoka", sans-serif;
+  font-size: 2.3rem;
+  font-weight: 800;
+  background: linear-gradient(
+    90deg,
+    #ff007f,
+    #ff6b00,
+    #ffb703,
+    #00b4d8,
+    #9c27b0,
+    #ff007f
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowFlow 4s linear infinite, gentleBounce 2s ease-in-out infinite;
+  display: block;
+  line-height: 1.25;
+  margin: 6px 0;
+}
+
+.celebration-subtext {
+  font-size: 1rem;
+  color: #795267;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+@keyframes rainbowFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+@keyframes gentleBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .countdown {
+    padding: 8px 10px;
+  }
+
+  .flip-timer {
+    gap: 10px;
+  }
+
+  .card {
+    width: 68px;
+    height: 78px;
+    border-radius: 14px;
+  }
+
+  .card .text {
+    font-size: 2.35rem;
+  }
+
+  .label {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+
+  .birthday-celebration {
+    font-size: 1.7rem;
+  }
+
+  .celebration-banner-wrapper {
+    padding: 18px 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .card {
+    width: 58px;
+    height: 68px;
+    border-radius: 12px;
+  }
+
+  .card .text {
+    font-size: 1.95rem;
+  }
+
+  .label {
+    font-size: 0.62rem;
+    padding: 2px 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .birthday-celebration {
+    font-size: 1.45rem;
+  }
+}
+

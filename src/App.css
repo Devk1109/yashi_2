@@ -1,0 +1,522 @@
+/* Global App Layout */
+.app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide scrollbar globally */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+/* Page transitions */
+.page {
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
+    env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  position: relative;
+}
+
+.page.exit-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* Crown Badge */
+.crown-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 246, 0.9));
+  color: #ff2d75;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 50px;
+  box-shadow: 0 4px 14px rgba(255, 45, 117, 0.15);
+  border: 1.5px solid rgba(255, 107, 157, 0.3);
+  margin-bottom: 12px;
+  animation: floatBadge 3s ease-in-out infinite;
+}
+
+@keyframes floatBadge {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Hero Section */
+.hero {
+  padding: 8px 20px 12px;
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.hero h1 {
+  font-family: "Fredoka", "Outfit", sans-serif;
+  font-size: 2.5rem;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  color: #2b1b24;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(255, 45, 117, 0.12);
+}
+
+.hero-subtext {
+  font-size: 1.05rem;
+  color: #6d4a5c;
+  font-weight: 500;
+  margin: 0;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #ff007f 0%, #ff4b8b 50%, #ff8533 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  display: inline-block;
+  filter: drop-shadow(0 2px 8px rgba(255, 0, 127, 0.25));
+}
+
+/* Teaser Section */
+.teaser {
+  padding: 12px 20px;
+  max-width: 620px;
+  width: 100%;
+  margin: 10px auto 0;
+  position: relative;
+  z-index: 10;
+}
+
+.teaser-card {
+  background: rgba(255, 255, 255, 0.88);
+  padding: 18px 24px;
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(255, 45, 117, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+  text-align: center;
+}
+
+.teaser-icon {
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+  animation: wiggleGift 2.5s ease-in-out infinite;
+}
+
+@keyframes wiggleGift {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  20% {
+    transform: rotate(-12deg) scale(1.1);
+  }
+  40% {
+    transform: rotate(12deg) scale(1.1);
+  }
+  60% {
+    transform: rotate(-8deg) scale(1.05);
+  }
+  80% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+#teaserHeading {
+  font-family: "Fredoka", "Outfit", sans-serif;
+  font-size: 1.25rem;
+  background: linear-gradient(135deg, #ff007f, #9c27b0, #ff4b8b);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+  margin: 0 0 6px 0;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.teaser-hint {
+  font-size: 0.92rem;
+  color: #795267;
+  font-style: italic;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Celebrate Button */
+.celebrate-btn {
+  background: linear-gradient(135deg, #ff007f 0%, #ff4081 50%, #ff758c 100%);
+  color: white;
+  border: none;
+  padding: 16px 42px;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  border-radius: 60px;
+  cursor: pointer;
+  margin: 18px auto 0;
+  transition: all 350ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 14px 35px rgba(255, 0, 127, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.celebrate-btn .btn-sparkles {
+  font-size: 1.3rem;
+  display: inline-block;
+  animation: spinSparkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes spinSparkle {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.2) rotate(15deg);
+  }
+}
+
+.celebrate-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: rotate(30deg);
+  animation: shineSweep 3s infinite;
+}
+
+@keyframes shineSweep {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  20%, 100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+.celebrate-btn:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 20px 45px rgba(255, 0, 127, 0.55), 0 0 25px rgba(255, 182, 193, 0.8);
+}
+
+.celebrate-btn:active {
+  transform: scale(0.97);
+}
+
+.celebrate-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  filter: grayscale(20%);
+  background: linear-gradient(135deg, #a09099, #c4b0bc);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.celebrate-btn:not(:disabled) {
+  animation: pulseCelebrate 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseCelebrate {
+  0%, 100% {
+    box-shadow: 0 14px 35px rgba(255, 0, 127, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    box-shadow: 0 18px 45px rgba(255, 0, 127, 0.6), 0 0 0 6px rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Back Button */
+.back-btn {
+  position: fixed;
+  top: max(env(safe-area-inset-top, 20px), 20px);
+  left: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #ff2d75;
+  border: 2px solid rgba(255, 107, 157, 0.4);
+  padding: 10px 20px;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 120;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.back-btn:hover {
+  background: #ff2d75;
+  color: white;
+  border-color: transparent;
+  transform: translateX(-4px) scale(1.04);
+  box-shadow: 0 10px 25px rgba(255, 45, 117, 0.35);
+}
+
+.back-btn:active {
+  transform: scale(0.96);
+}
+
+/* Page Navigation Button */
+.page-nav-btn {
+  background: linear-gradient(135deg, #ff007f 0%, #ff4b8b 50%, #9c27b0 100%);
+  color: white;
+  border: none;
+  padding: 15px 36px;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 12px 30px rgba(255, 0, 127, 0.35);
+  position: relative;
+  z-index: 15;
+}
+
+.page-nav-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 16px 40px rgba(255, 0, 127, 0.5);
+}
+
+.page-nav-btn:active {
+  transform: scale(0.97);
+}
+
+/* Final Bestie Tribute Section */
+.final {
+  text-align: center;
+  padding: 30px 20px;
+  max-width: 650px;
+  width: 100%;
+  margin: 30px auto 20px;
+}
+
+.bestie-card {
+  background: rgba(255, 255, 255, 0.92);
+  padding: 32px 28px;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(255, 45, 117, 0.22);
+  border: 2px solid rgba(255, 107, 157, 0.35);
+  backdrop-filter: blur(16px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bestie-duo-avatar {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 2.4rem;
+  background: #fff0f6;
+  padding: 8px 24px;
+  border-radius: 50px;
+  box-shadow: 0 6px 16px rgba(255, 45, 117, 0.15);
+  margin-bottom: 16px;
+  animation: pulseAvatar 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseAvatar {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.heart-separator {
+  font-size: 1.8rem;
+  animation: beatHeart 1.2s infinite;
+}
+
+@keyframes beatHeart {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+.final-message {
+  font-family: "Fredoka", "Outfit", sans-serif;
+  font-size: 1.7rem;
+  background: linear-gradient(135deg, #ff007f, #ff6b00, #9c27b0);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+
+.final-subtitle {
+  font-size: 1rem;
+  color: #634050;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.final-stickers {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  font-size: 1.6rem;
+  margin-top: 10px;
+}
+
+.final-stickers span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.final-stickers span:hover {
+  transform: scale(1.4) rotate(15deg);
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 1.95rem;
+    padding: 0 5px;
+  }
+
+  .hero-subtext {
+    font-size: 0.95rem;
+  }
+
+  .crown-badge {
+    font-size: 0.75rem;
+    padding: 5px 14px;
+  }
+
+  .teaser-card {
+    padding: 14px 18px;
+  }
+
+  #teaserHeading {
+    font-size: 1.12rem;
+  }
+
+  .teaser-hint {
+    font-size: 0.85rem;
+  }
+
+  .celebrate-btn {
+    font-size: 1.1rem;
+    padding: 13px 32px;
+  }
+
+  .back-btn {
+    top: max(env(safe-area-inset-top, 14px), 14px);
+    left: 14px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  .page-nav-btn {
+    font-size: 1rem;
+    padding: 12px 26px;
+  }
+
+  .final {
+    padding: 20px 10px;
+  }
+
+  .bestie-card {
+    padding: 24px 18px;
+  }
+
+  .final-message {
+    font-size: 1.45rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+
+  .celebrate-btn {
+    font-size: 1rem;
+    padding: 12px 26px;
+  }
+}
+
