@@ -103,13 +103,13 @@ function CelebrationPage({ onComplete, musicPlayerRef }) {
     }
   };
 
-  // Determine button sequence
+  // Determine button sequence: Lights -> Music & Cake -> Bunting -> Balloons -> Cut Cake -> Message
   const showLightsButton = true;
   const showMusicButton = activatedButtons.lights;
-  const showCakeCutButton = activatedButtons.music;
-  const showDecorateButton = activatedButtons.cakeCut;
+  const showDecorateButton = activatedButtons.music;
   const showBalloonsButton = activatedButtons.decorate;
-  const showMessageButton = activatedButtons.balloons;
+  const showCakeCutButton = activatedButtons.balloons;
+  const showMessageButton = activatedButtons.cakeCut;
 
   useEffect(() => {
     if (showButtons) {
@@ -133,19 +133,6 @@ function CelebrationPage({ onComplete, musicPlayerRef }) {
       }
     }
   }, [showMusicButton, activatedButtons.music]);
-
-  useEffect(() => {
-    if (showCakeCutButton && !activatedButtons.cakeCut) {
-      const btn = document.querySelector('[data-button="cakeCut"]');
-      if (btn) {
-        gsap.fromTo(
-          btn,
-          { opacity: 0, scale: 0.7, y: 20 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.7)" }
-        );
-      }
-    }
-  }, [showCakeCutButton, activatedButtons.cakeCut]);
 
   useEffect(() => {
     if (showDecorateButton && !activatedButtons.decorate) {
@@ -172,6 +159,19 @@ function CelebrationPage({ onComplete, musicPlayerRef }) {
       }
     }
   }, [showBalloonsButton, activatedButtons.balloons]);
+
+  useEffect(() => {
+    if (showCakeCutButton && !activatedButtons.cakeCut) {
+      const btn = document.querySelector('[data-button="cakeCut"]');
+      if (btn) {
+        gsap.fromTo(
+          btn,
+          { opacity: 0, scale: 0.7, y: 20 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.7)" }
+        );
+      }
+    }
+  }, [showCakeCutButton, activatedButtons.cakeCut]);
 
   useEffect(() => {
     if (showMessageButton) {
@@ -424,17 +424,7 @@ function CelebrationPage({ onComplete, musicPlayerRef }) {
                   data-button="music"
                   onClick={() => handleButtonClick("music")}
                 >
-                  🎵 2. Bring The Birthday Cake & Music
-                </button>
-              )}
-
-              {showCakeCutButton && !activatedButtons.cakeCut && (
-                <button
-                  className="action-button cut-cake-button"
-                  data-button="cakeCut"
-                  onClick={() => handleButtonClick("cakeCut")}
-                >
-                  🔪 3. Cut The Birthday Cake! 🎂✨
+                  🎵 2. Play Birthday Music & Bring Cake 🎂
                 </button>
               )}
 
@@ -444,7 +434,7 @@ function CelebrationPage({ onComplete, musicPlayerRef }) {
                   data-button="decorate"
                   onClick={() => handleButtonClick("decorate")}
                 >
-                  🎨 4. Hang Birthday Bunting
+                  🎨 3. Hang Birthday Bunting
                 </button>
               )}
 
@@ -454,7 +444,17 @@ function CelebrationPage({ onComplete, musicPlayerRef }) {
                   data-button="balloons"
                   onClick={() => handleButtonClick("balloons")}
                 >
-                  🎈 5. Release The Balloons & Confetti
+                  🎈 4. Release The Balloons & Confetti
+                </button>
+              )}
+
+              {showCakeCutButton && !activatedButtons.cakeCut && (
+                <button
+                  className="action-button cut-cake-button"
+                  data-button="cakeCut"
+                  onClick={() => handleButtonClick("cakeCut")}
+                >
+                  🔪 5. Cut The Birthday Cake! 🎂✨
                 </button>
               )}
 
@@ -520,9 +520,9 @@ function CelebrationPage({ onComplete, musicPlayerRef }) {
 
                 <div
                   className={`cake ${activatedButtons.cakeCut ? "cake-is-cut" : ""}`}
-                  onClick={!activatedButtons.cakeCut ? executeCakeCutting : undefined}
-                  style={{ cursor: !activatedButtons.cakeCut ? "pointer" : "default" }}
-                  title={!activatedButtons.cakeCut ? "Click to cut the cake! 🔪" : "Happy Birthday Yashi!"}
+                  onClick={showCakeCutButton && !activatedButtons.cakeCut ? executeCakeCutting : undefined}
+                  style={{ cursor: showCakeCutButton && !activatedButtons.cakeCut ? "pointer" : "default" }}
+                  title={showCakeCutButton && !activatedButtons.cakeCut ? "Click to cut the cake! 🔪" : "Happy Birthday Yashi!"}
                 >
                   {/* Floating Knife */}
                   <div className={`cake-knife ${isCutting ? "cutting" : ""}`}>
@@ -530,7 +530,7 @@ function CelebrationPage({ onComplete, musicPlayerRef }) {
                     <span className="knife-ribbon">🎀</span>
                   </div>
 
-                  {!activatedButtons.cakeCut && (
+                  {showCakeCutButton && !activatedButtons.cakeCut && (
                     <div className="cut-hint-badge">✨ Tap Cake or Button to Cut! 🔪</div>
                   )}
 
