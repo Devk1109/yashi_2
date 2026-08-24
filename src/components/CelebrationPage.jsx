@@ -464,7 +464,7 @@ function CelebrationPage({ onComplete, musicPlayerRef }) {
                   data-button="message"
                   onClick={() => handleButtonClick("message")}
                 >
-                  💌 Well, I Have a Special Message for You Tamatar 💖
+                  💌 Well, We Have a Special Message for You 💖
                 </button>
               )}
             </div>
