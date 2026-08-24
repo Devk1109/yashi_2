@@ -173,7 +173,7 @@ function App() {
             <div className="bestie-duo-avatar">
               <span className="avatar-icon">⚡</span>
               <span className="heart-separator">💛</span>
-              <span className="avatar-icon">🦘</span>
+              <span className="avatar-icon">🐼</span>
             </div>
             <h2 className="final-message"></h2>
             <p className="final-subtitle">
